@@ -1,119 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="google-site-verification" content="6hn5njmJfBxurOg-nu1lNqvjTRgo-9ec9fVy2dNbg90" />
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jio Unlimited Internet Trick by Arsalan Shaikh - Free Jio Net 2025</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Learn how to get unlimited internet on your Jio SIM using the Dark Tunnel VPN. Step-by-step guide and config files by Arsalan Shaikh. Free Jio net trick 2025.">
-  <meta name="keywords" content="Jio free internet, Jio hack, free Jio net 2025, Jio VPN config, Arsalan Shaikh, Dark Tunnel VPN, Jio unlimited net, internet trick, free data Jio">
-  <meta name="author" content="Arsalan Shaikh">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph for Social Sharing -->
-  <meta property="og:title" content="Jio Unlimited Internet Hack by Arsalan Shaikh">
-  <meta property="og:description" content="Use your Jio SIM to enjoy free unlimited internet with the Dark Tunnel VPN method. Download config files and APK with a detailed setup guide.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com">
-  <meta property="og:image" content="https://yourdomain.com/preview.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Fonts & Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <title>Device Access Check</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #fff;
+      color: #333;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      display: inline-block;
+      max-width: 400px;
+    }
+    .spinner {
+      margin-top: 20px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #0072ff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+<body>
+  <div class="card">
+    <h2>🔒 Verifying Device Access</h2>
+    <p id="message">Please wait while we verify your device...</p>
+    <div class="spinner"></div>
+  </div>
 
-  <!-- Header -->
-  <header class="text-center py-8 bg-gray-900 shadow-md border-b border-gray-700">
-    <h1 class="text-4xl font-bold text-green-400">🔥 Jio Unlimited Internet Hack 2025</h1>
-    <p class="mt-2 text-sm text-gray-400">By <span class="text-white font-semibold">Arsalan Shaikh</span></p>
-  </header>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  <!-- Main Content -->
-  <main class="max-w-3xl mx-auto px-6 py-10 space-y-12">
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcXm5QQaYCCddVXNgGqTBAszdKEK-0PJQ",
+      authDomain: "multi-service-app-77dd8.firebaseapp.com",
+      projectId: "multi-service-app-77dd8",
+      storageBucket: "multi-service-app-77dd8.firebasestorage.app",
+      messagingSenderId: "123732555482",
+      appId: "1:123732555482:web:ea47c825e0dbb504f597e3"
+    };
 
-    <!-- APK Download -->
-    <section class="bg-gray-800 p-6 rounded-2xl shadow-lg border border-green-600">
-      <h2 class="text-2xl mb-3 font-bold text-green-300">📱 Download Dark Tunnel VPN APK</h2>
-      <p class="mb-4 text-gray-400">Dark Tunnel is a secure VPN tool that allows Jio users to access unlimited internet using special configuration files.</p>
-      <a href="https://play.google.com/store/apps/details?id=net.darktunnel.app" class="inline-block bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-xl text-lg transition">
-        Download Now
-      </a>
-    </section>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    <!-- Config File -->
-    <section class="bg-gray-800 p-6 rounded-2xl shadow-lg border border-blue-600">
-      <h2 class="text-2xl mb-3 font-bold text-blue-300">🧩 Download Config File (.dtl)</h2>
-      <p class="mb-4 text-gray-400">Import this config file into the Dark Tunnel app to activate unlimited Jio net access.</p>
-      <a href="copy.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-xl text-lg transition">
-        Get Config
-      </a>
-    </section>
+    async function checkDevice() {
+      const msg = document.getElementById("message");
+      let deviceId = localStorage.getItem("deviceId");
+      if (!deviceId) {
+        deviceId = "device-" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("deviceId", deviceId);
+      }
 
-    <!-- Guide -->
-    <section class="bg-gray-800 p-6 rounded-2xl shadow-lg border border-yellow-500">
-      <h2 class="text-2xl font-bold text-yellow-300 mb-4">📘 Step-by-Step Setup Guide</h2>
-      <ol class="list-decimal pl-5 text-gray-300 space-y-3">
-        <li>Insert a <span class="text-white font-semibold">working Jio 4G SIM</span> in your phone.</li>
-        <li>Go to <b>Settings > Mobile Network > Access Point Names (APN)</b>.</li>
-        <li>Edit APN with these settings:
-          <ul class="list-disc pl-6 mt-2 text-sm text-gray-400">
-            <li><b>APN Protocol:</b> IPv4</li>
-            <li><b>APN:</b> jionet</li>
-            <li><b>Bearer:</b> LTE</li>
-          </ul>
-        </li>
-        <li>Save APN and make it active.</li>
-        <li>Install <b>Dark Tunnel APK</b> from above.</li>
-        <li>Open the app and <b>import the .dtl config file</b>.</li>
-        <li>Tap <b>Start</b> to connect. Wait for “Connected” status.</li>
-        <li>If not connecting, enable Airplane Mode for 5 seconds, then try again.</li>
-      </ol>
-    </section>
+      const ref = doc(db, "devices", deviceId);
+      const snap = await getDoc(ref);
 
-    <!-- Benefits Section -->
-    <section class="bg-gray-800 p-6 rounded-2xl shadow-lg border border-purple-600">
-      <h2 class="text-2xl font-bold text-purple-300 mb-4">🚀 Benefits of This Jio Trick</h2>
-      <ul class="list-disc pl-5 text-gray-300 space-y-2">
-        <li>Unlimited data with no recharge required</li>
-        <li>Works on Android devices without root</li>
-        <li>Fast and stable VPN connection</li>
-        <li>Tested and verified by hundreds of users</li>
-        <li>Completely free method shared by Arsalan Shaikh</li>
-      </ul>
-    </section>
+      if (!snap.exists()) {
+        const name = prompt("Enter your device name:");
+        await setDoc(ref, {
+          name: name || "Unnamed Device",
+          allowed: false,
+          registeredAt: new Date()
+        });
+        msg.textContent = "✅ Device registered. Waiting for admin approval...";
+      } else if (snap.data().allowed) {
+        msg.textContent = "✅ Access granted! Redirecting...";
+        setTimeout(() => window.location.href = "main.html", 1500);
+      } else {
+        msg.textContent = "⏳ Awaiting admin approval...";
+        setTimeout(checkDevice, 5000);
+      }
+    }
 
-    <!-- FAQ Section -->
-    <section class="bg-gray-800 p-6 rounded-2xl shadow-lg border border-red-600">
-      <h2 class="text-2xl font-bold text-red-300 mb-4">❓ Frequently Asked Questions</h2>
-      <div class="text-gray-300 space-y-4">
-        <p><strong>Q: Is this trick safe to use?</strong><br/>Yes, it’s a VPN-based trick and does not modify your device or SIM card.</p>
-        <p><strong>Q: Do I need to root my phone?</strong><br/>No, this works on all Android phones without rooting.</p>
-        <p><strong>Q: Will this work on Jio Fiber?</strong><br/>No, this method is specifically for Jio mobile SIMs.</p>
-      </div>
-    </section>
-
-    <!-- Contact / Attribution -->
-    <section class="text-sm text-center text-gray-400 pt-6 border-t border-gray-600">
-      ⚠️ Disclaimer: This tutorial is shared for educational and testing purposes. Use at your own risk.<br/>
-      📧 Contact: arsalanshaikh@yourdomain.com
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="text-center py-6 text-gray-500 text-sm bg-gray-900 border-t border-gray-700">
-    &copy; 2025 Arsalan Shaikh | Internet Service & VPN Tricks | All Rights Reserved
-  </footer>
-
+    checkDevice();
+  </script>
 </body>
 </html>
