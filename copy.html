@@ -2,51 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DarkTunnel Config Copy</title>
+  <title>DarkTunnel Configs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
-      text-align: center;
-      padding: 2rem;
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      padding: 1rem;
     }
-    button {
-      background: #00ff88;
-      color: #000;
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
+    .config-card {
+      border: 1px solid #0f0;
       border-radius: 8px;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #111;
+    }
+    .config-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .upload-time {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .copy-btn {
+      background: #0f0;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
     }
-    button:hover {
-      background: #00dd77;
-    }
-    #configText {
-      display: none;
+    .copy-btn:hover {
+      background: #0c0;
     }
   </style>
 </head>
 <body>
-  <h1>Copy DarkTunnel Config</h1>
-  <p>Click the button below to copy the config.</p>
 
-  <textarea id="configText" readonly>
-darktunnel://eyJ0eXBlIjoiU1NIIiwibmFtZSI6IkrJquG0jyA0yaIgR-G0gOG0jeG0h8qAIFTKgMqPIEzJquG0jcmq4bSb4bSH4bSFIFTJquG0jeG0hyBGyarKn-G0hyAiLCJzc2hUdW5uZWxDb25maWciOnsiaW5qZWN0Q29uZmlnIjp7ImVuYWJsZWQiOnRydWV9fSwiZW5jcnlwdGVkTG9ja2VkQ29uZmlnIjoiRmZMakdwTVBuOTMyMnZUMTYwRnBUYk5xNXhKbWNaQ3VHZ3hESXFscmp0WEc4aVV4RmhlVHNDUG5Nc1BKbHRKcG9Tdklua21qZWNUVWJTY1BIenByMjl2dG9tazZkdUxONjZUYjdoZjN1R0g5MWFlbFJnWkt2b3U1V18zTTdIS1VNMGhrT0ZNaHZ1U1hoVUhHX3RPNjRsSW4wMzBoWkZMOXJ2NlFjYTZYWTFxV3JKNmZPOVpyYXdJLUNRUzh3QTNhNVJUYzNlX0wtb3FJNmpnUXFOSWFNUWNETmFYd01GTEZob0kzYVh4VlF3VmZfSEJhRWU4TkZUREQ5S0hHLW5vQUxaMmRiRnpyUGt1UDRzVDVpeG15LVNBQWMxcm44YlN6XzhqdGk3Z01HWmZFM3R3MkVSR0Yza0FZSDg5MGZQR3Jmelp4b3hkSFc1UlpWZkNTcGplWVdrNVEwV25DbjBoTS1vc3FQZzJBRTlwV2Q5SVBIUlB4TEVBQUNDN1NFNERGX3VBSjFuQjdHUk41TC1uM2tVZ05UQzV5ZzdySXFMcGJ3bndLcmtKY2FXOVR0VEdZZkhjd3FQTHh3Y3RTYWdtdFpYcUhqdGM0SnZQWnhHM3VtNjZYSjJwZHZ4X2Y3amhZU3BCeEtGWXJSWm9WcUtzQW1sLVdWT1ozSDRXcFdMTGJGZVFmd1YwWWJ2U2RhY2ZldUVoaXFveVhma0VuOXNTVHFiN3I5cmQyYndmd1F2cXhld0NuT0I3cHFpRlhIa0xYLXMzWEd4QUY1Y1hZc3d1SWZNUWkwS01zZS1uYTZpdElVNEZWc3Q0V0xObHZNZ3lFRUh1MDlzYXM4V3ZZbF9id3o2cXJyUlBLWXhGdUxVaThGcV81cjE4Q2c5WnNqSEZsaFp6Q1NST0F5bEZTd2Z4M2RsNkR3WW91cGo3YlVFRVhOM0lMZzdVRUgzajdyMWtHYjAwUGxaUHNvMVpIOTRjRUlnOEtpR2ZIaDJRaWZWSS1mVFdvaEhvN3RMWkFVUmVkMDdXUXhiRXJHODNBZjR0MVJWZE92MzZHX3BBcXU2LU9YS0k1emtuZ05tQ1FZUy1NOHkyV0cyTW5yazQ5MEtLMVlkbEpZcExQSkN6U3BjcWhSd3M4YlNTQXlEWjBTSzlTdVB3cnM5czRUMWdvX2w2ZE5vamVNaHdueUxHTWthc1hJZzVhRTV0SHgzY181MW93Wi1lT3R1ZWZHTW95U3YxSnJIVmU0b2o3SEtqUG43aXozclptSVVqWHpEYV9uQ3pOYlRZUjRVZ3B3ODl5cWJfZmpPcVZhOXE1RHNhZkROcmZHTGJPS3hSMUJqVVRJYlBqTFlxUnc0czNmbndSMG84QlRLQW5zMWVVXzBLdXhDbjFfc2dVWVVPZkl4RVJWZU5rR20tckFIenk2UVFGZS12bmI3WGh2Skd2SGNPNGFGek9XZmVOTms2d2o5WjZfZ3JLZ2RWcWloLVR6Z1RBdGlxVGlvNF93MHlaNUdRcDJ4QVI1VklIdm9xSVhFOTNWOF9hak9fS0N4aHhJSFVDX190WVR4WVFpLTFfVGR4ZUVPaVVYUnVYMVA2TWdheUVkRl9XaXI4RWRSN05XenozLWE1amlGS0FjMHktcHhlNzFYOHAwbk1uUlhfam9rUE05RlozQ1A0c3JUYVlNckxYUVIxV0g3Q1ZuNzVmTGd3a0lJeEdHOVNQMUlGUXI2V0dxS2VOa2NNdEoyVkFYc0swM0hMMWhGUDZEdGM1T1FJVkNzN2VEN04tdEo4RmNncEVhbDU5Rk9fbF9LTmFjNVo1Xzg5OWFSUTlqa3RNNGgxNlhiTGVLMExnLTZ6VXR1cHJENGdWRFBTUWlJZFBsVUVHWlBUVnNMekFyS2swdGhKOHFUYnBjeTN2LTlOcks2RnFjYXVFci1nV1ExZ21adHNmTkJuWE85RnZfN1NENWNaNXVyTno3Vld3VUdVZ1hDdjF2by04U2hyakFBanowQ3VXRW5rTHRNb1BmMGFPMVNBVGFCWnppWkpzSERNbmdhNGxKNkdnMmdfT0hwTkJuckU5cFZWNWFLUUxnQTVHU05oWk9JaXdBNG5POU43T0ttUExpQ01FRERvTkVXYTQwbi1qMUh6VXJZWEhFUll0RG52TW8tVzI5WWF0c1RDdHVVY0VXVU1VLWtFX3R6ejgwWDVpVkhOdUwwQTYyWF9MZzhOMzdBOUJfVzBFSGJNNHk1cDcwLVJUVGFxcDhfaWZSbUVib0ZXX2RMc2d5X0oxN2d2QjR1MmN3dEprVW5vSWhvOD0ifQ==  </textarea>
+  <h1>DarkTunnel Configs</h1>
+  <div id="configs"></div>
 
-  <button onclick="copyConfig()">Copy Config</button>
-
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
   <script>
-    function copyConfig() {
-      const config = document.getElementById("configText");
-      config.select();
-      config.setSelectionRange(0, 99999); // For mobile
-      document.execCommand("copy");
-      alert("Config copied to clipboard!");
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcXm5QQaYCCddVXNgGqTBAszdKEK-0PJQ",
+      authDomain: "multi-service-app-77dd8.firebaseapp.com",
+      projectId: "multi-service-app-77dd8",
+      storageBucket: "multi-service-app-77dd8.firebasestorage.app",
+      messagingSenderId: "123732555482",
+      appId: "1:123732555482:web:ea47c825e0dbb504f597e3"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const configsContainer = document.getElementById('configs');
+
+    db.collection("darktunnel-configs").orderBy("created", "desc").onSnapshot(snapshot => {
+      configsContainer.innerHTML = '';
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const card = document.createElement('div');
+        card.className = 'config-card';
+
+        const title = document.createElement('div');
+        title.className = 'config-title';
+        title.textContent = data.name;
+
+        const time = document.createElement('div');
+        time.className = 'upload-time';
+        if (data.created && data.created.toDate) {
+          const date = data.created.toDate();
+          time.textContent = `Uploaded: ${date.toLocaleString()}`;
+        } else {
+          time.textContent = 'Uploaded: Unknown';
+        }
+
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-btn';
+        copyButton.textContent = 'Copy Config';
+        copyButton.addEventListener('click', () => {
+          navigator.clipboard.writeText(data.value)
+            .then(() => alert('✅ Config copied to clipboard!'))
+            .catch(() => alert('❌ Failed to copy.'));
+        });
+
+        card.appendChild(title);
+        card.appendChild(time);
+        card.appendChild(copyButton);
+        configsContainer.appendChild(card);
+      });
+    });
   </script>
+
 </body>
 </html>
